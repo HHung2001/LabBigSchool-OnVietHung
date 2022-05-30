@@ -28,6 +28,7 @@ namespace LabBigSchool_OnVietHung.Models
         }
         [Authorize]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(CourseViewModel viewModel)
         {
             if(!ModelState.IsValid)
