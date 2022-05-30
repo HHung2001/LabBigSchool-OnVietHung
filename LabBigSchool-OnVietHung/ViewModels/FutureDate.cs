@@ -16,7 +16,7 @@ namespace LabBigSchool_OnVietHung.ViewModels
                 "dd/M/yyyy",
                 CultureInfo.CurrentCulture,
                 DateTimeStyles.None,
-                out DateTime);
+                out dateTime);
 
            return (isValid && dateTime > DateTime.Now);
         }
