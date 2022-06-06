@@ -3,14 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
+using LabBigSchool_OnVietHung.Models;
 
 namespace LabBigSchool_OnVietHung.Controllers
 {
     public class HomeController : Controller
     {
+        private ApplicationDbContext _dbcontext;
+        public HomeController()
+        {
+            _dbcontext = new ApplicationDbContext();
+        }
         public ActionResult Index()
         {
-            return View();
+            var upcomingCourses = _dbcontext.Course
+                .Include(c => c.Lecturer)
+                .Include(c => c.Category)
+                .Where(c => c.DateTime > DateTime.Now);
+            return View(upcomingCourses);
         }
 
         public ActionResult About()
